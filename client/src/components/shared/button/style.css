@@ -1,0 +1,92 @@
+a,
+.button,
+.button--name {
+	text-decoration: none !important;
+}
+
+.button {
+	display: flex;
+	padding: 20px;
+	margin: 12px 20px;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: opacity 0.5s;
+}
+
+.button:hover {
+	opacity: 0.7;
+}
+
+.button:active {
+	opacity: 0.3;
+}
+
+.button--disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.button--disabled:hover,
+.button--disabled:active {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.button__primary {
+	color: #fff;
+	width: calc(100% - 40px);
+	background-color: #775ce5;
+	margin: 20px;
+	height: 56px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.button__transparent {
+	color: #775ce5;
+	width: calc(100% - 40px);
+	background-color: #fff;
+	border: 1px solid #775ce5;
+	height: 56px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.button__transparent:hover {
+	background-color: #775ce5;
+	color: #fff;
+	opacity: 0.7;
+}
+
+.button__warning {
+	color: #f23152;
+	width: calc(100% - 40px);
+	background-color: #fff;
+	border: 1px solid #f23152;
+	height: 56px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.button__warning:hover {
+	background-color: #f23152;
+	color: #fff;
+	opacity: 0.7;
+}
+
+.button__slim {
+	height: 46px;
+}
+
+.button__fat {
+	height: 72px;
+}
+
+.button__back {
+	display: inline-block;
+	padding: 0;
+	margin: 60px 20px 12px 20px;
+}

@@ -1,0 +1,15 @@
+export const Paths = {
+	home: '/',
+	login: '/login',
+	register: '/register',
+	registerConfirm: '/register-confirm',
+	recovery: '/recovery',
+	recoveryConfirm: '/recovery-confirm',
+	balance: '/balance',
+	notifications: '/notifications',
+	settings: '/settings',
+	receive: '/receive',
+	send: '/send',
+	transaction: '/transaction/:id',
+	notFound: '*',
+} as const

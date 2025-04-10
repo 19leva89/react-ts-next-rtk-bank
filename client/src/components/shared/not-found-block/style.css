@@ -1,0 +1,21 @@
+.not-found {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	text-align: center;
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+.not-found__title {
+	font-size: 42px;
+}
+
+.not-found__title .not-found__smile {
+	font-size: 64px;
+	margin: 10px;
+}
+
+.not-found__description {
+	font-size: 24px;
+}
