@@ -1,5 +1,5 @@
 [build]
-  command = "cd client && npm install && CI=false npm run build"
+  command = "cd client && npm install && npm run build"
   publish = "client/.next"
 
 [[plugins]]

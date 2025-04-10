@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "app/generated/prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  password      String
+  name          String?
+  isConfirmed   Boolean        @default(false) @map("is_confirmed")
+  balance       Float          @default(0)
+  img           String         @default("/svg/user.svg")
+  confirmCodes  ConfirmCode[]
+  recoveryCodes RecoveryCode[]
+  transactions  Transaction[]
+  notifications Notification[]
+}
+
+model ConfirmCode {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  code      String
+  expiresAt DateTime @map("expires_at")
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model RecoveryCode {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  code      String
+  expiresAt DateTime @map("expires_at")
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id            String   @id @default(uuid())
+  paymentSystem String   @map("payment_system")
+  amount        Int
+  status        String
+  date          DateTime @default(now())
+  userId        String   @map("user_id")
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model Notification {
+  id         String   @id @default(uuid())
+  eventTitle String   @map("event_title")
+  eventTime  DateTime @default(now()) @map("event_time")
+  eventType  String   @map("event_type")
+  userId     String   @map("user_id")
+  user       User     @relation(fields: [userId], references: [id])
+}
