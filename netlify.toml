@@ -1,6 +1,6 @@
 [build]
   command = "cd client && npm install && CI=false npm run build"
-  publish = "client"
+  publish = "client/.next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
