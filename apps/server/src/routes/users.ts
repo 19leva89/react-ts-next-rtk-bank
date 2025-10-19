@@ -31,7 +31,7 @@ router.post('/recovery', recovery)
 // /api/user/recovery-confirm
 router.post('/recovery-confirm', recoveryConfirm)
 
-//api/user/new-email
+// /api/user/new-email
 router.put('/new-email', auth, newEmail)
 
 // /api/user/new-password
