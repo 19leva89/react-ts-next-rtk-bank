@@ -1,12 +1,25 @@
 # This project contains the following technologies
 
+Authentication and User Management:
+- Bcrypt (password hashing)
+- JSON Web Token (securely transmitting information)
+
+Data Fetching and State Management:
+- Prisma 6 (ORM for DB)
+
+Middleware and Server Utilities:
+- Concurrently (all projects are running in tandem)
+- Express 5
+- Morgan (logger middleware)
+
+Utilities and Libraries:
+- Knip (code analyzer and declutter)
+
 # Project setup commands:
-terminal powershell -> `pnpm i` (install dependencies)
-terminal powershell -> `pnpm update --recursive` (update all dependencies)
-terminal powershell -> `pnpm run dev`
-terminal powershell -> `pnpm run lint` (loading ESLint checker)
-terminal powershell -> `pnpm run types` (loading TypeScript checker)
-terminal powershell -> `pnpm run knip` (loading Knip checker)
+terminal powershell -> `npm i --force` (install dependencies)
+terminal powershell -> `npx npm-check-updates --interactive` (update dependencies)
+terminal powershell -> `npm run dev`
+terminal powershell -> `npm run lint` (loading ESLint checker)
 
 # Database commands:
 terminal powershell -> `npx prisma generate`
