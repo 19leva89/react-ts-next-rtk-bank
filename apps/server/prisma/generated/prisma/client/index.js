@@ -87,6 +87,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -141,6 +144,40 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+  img: 'img'
+};
+
+exports.Prisma.ConfirmCodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code'
+};
+
+exports.Prisma.RecoveryCodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code'
+};
+
+exports.Prisma.TransactionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  paymentSystem: 'paymentSystem',
+  status: 'status',
+  userId: 'userId'
+};
+
+exports.Prisma.NotificationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventTitle: 'eventTitle',
+  eventType: 'eventType',
+  userId: 'userId'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -178,7 +215,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../../.env"
   },
   "relativePath": "../../..",
@@ -187,8 +224,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
-  "postinstall": false,
+  "activeProvider": "mysql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -197,8 +233,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"generated/prisma/client\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String         @id @default(cuid())\n  email         String         @unique\n  password      String\n  name          String?\n  isConfirmed   Boolean        @default(false) @map(\"is_confirmed\")\n  balance       Float          @default(0)\n  img           String         @default(\"/svg/user.svg\")\n  //\n  confirmCodes  ConfirmCode[]\n  recoveryCodes RecoveryCode[]\n  transactions  Transaction[]\n  notifications Notification[]\n}\n\nmodel ConfirmCode {\n  id        String   @id @default(cuid())\n  userId    String   @map(\"user_id\")\n  code      String\n  expiresAt DateTime @map(\"expires_at\")\n  user      User     @relation(fields: [userId], references: [id])\n\n  @@map(\"confirm_code\")\n}\n\nmodel RecoveryCode {\n  id        String   @id @default(cuid())\n  userId    String   @map(\"user_id\")\n  code      String\n  expiresAt DateTime @map(\"expires_at\")\n  user      User     @relation(fields: [userId], references: [id])\n\n  @@map(\"recovery_code\")\n}\n\nmodel Transaction {\n  id            String   @id @default(cuid())\n  paymentSystem String   @map(\"payment_system\")\n  amount        Int\n  status        String\n  date          DateTime @default(now())\n  userId        String   @map(\"user_id\")\n  user          User     @relation(fields: [userId], references: [id])\n}\n\nmodel Notification {\n  id         String   @id @default(cuid())\n  eventTitle String   @map(\"event_title\")\n  eventTime  DateTime @default(now()) @map(\"event_time\")\n  eventType  String   @map(\"event_type\")\n  userId     String   @map(\"user_id\")\n  user       User     @relation(fields: [userId], references: [id])\n}\n",
-  "inlineSchemaHash": "abf3b2f281ae7daab89daf18b0e185e8d114003fcff205f0fc7df35b84c6ed10",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"generated/prisma/client\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String         @id @default(cuid())\n  email         String         @unique\n  password      String\n  name          String?\n  isConfirmed   Boolean        @default(false) @map(\"is_confirmed\")\n  balance       Float          @default(0)\n  img           String         @default(\"/svg/user.svg\")\n  //\n  confirmCodes  ConfirmCode[]\n  recoveryCodes RecoveryCode[]\n  transactions  Transaction[]\n  notifications Notification[]\n}\n\nmodel ConfirmCode {\n  id        String   @id @default(cuid())\n  userId    String   @map(\"user_id\")\n  code      String\n  expiresAt DateTime @map(\"expires_at\")\n  user      User     @relation(fields: [userId], references: [id])\n\n  @@map(\"confirm_code\")\n}\n\nmodel RecoveryCode {\n  id        String   @id @default(cuid())\n  userId    String   @map(\"user_id\")\n  code      String\n  expiresAt DateTime @map(\"expires_at\")\n  user      User     @relation(fields: [userId], references: [id])\n\n  @@map(\"recovery_code\")\n}\n\nmodel Transaction {\n  id            String   @id @default(cuid())\n  paymentSystem String   @map(\"payment_system\")\n  amount        Int\n  status        String\n  date          DateTime @default(now())\n  userId        String   @map(\"user_id\")\n  user          User     @relation(fields: [userId], references: [id])\n}\n\nmodel Notification {\n  id         String   @id @default(cuid())\n  eventTitle String   @map(\"event_title\")\n  eventTime  DateTime @default(now()) @map(\"event_time\")\n  eventType  String   @map(\"event_type\")\n  userId     String   @map(\"user_id\")\n  user       User     @relation(fields: [userId], references: [id])\n}\n",
+  "inlineSchemaHash": "81591b0856bb6ac7d078e7b204e2a8a405594b0d6dc2131d350a4a5abb162298",
   "copyEngine": true
 }
 

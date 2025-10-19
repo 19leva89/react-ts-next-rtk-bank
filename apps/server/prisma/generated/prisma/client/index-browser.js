@@ -114,6 +114,9 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -166,6 +169,40 @@ exports.Prisma.SortOrder = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+  img: 'img'
+};
+
+exports.Prisma.ConfirmCodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code'
+};
+
+exports.Prisma.RecoveryCodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code'
+};
+
+exports.Prisma.TransactionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  paymentSystem: 'paymentSystem',
+  status: 'status',
+  userId: 'userId'
+};
+
+exports.Prisma.NotificationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventTitle: 'eventTitle',
+  eventType: 'eventType',
+  userId: 'userId'
 };
 
 
