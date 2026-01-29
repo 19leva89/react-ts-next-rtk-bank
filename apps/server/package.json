@@ -4,39 +4,30 @@
   "private": true,
   "scripts": {
     "start": "node dist/index.js",
-    "server": "pnpm dlx tsx --env-file=.env --watch src/index.ts",
-		"build": "tsc",
-    "dev": "concurrently \"npm run server\" \"npx prisma studio\"",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev --skip-generate",
-    "db:deploy": "prisma migrate deploy",
-    "db:push": "prisma db push",
-    "prisma": "npx prisma studio",
+    "build": "tsc",
+    "dev": "pnpm dlx tsx --env-file=.env --watch src/index.ts",
     "lint": "eslint --max-warnings 0",
-    "check-types": "tsc --noEmit",
-    "postinstall": "prisma generate"
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^6.17.1",
+    "@repo/bank-db": "workspace:*",
     "@repo/ui": "workspace:*",
-    "bcryptjs": "^3.0.2",
+    "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.6.1",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/cookie-parser": "^1.4.9",
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.3",
+    "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
-    "concurrently": "^9.2.1",
-    "prisma": "^6.17.1",
     "typescript": "^5.9.3"
   }
 }

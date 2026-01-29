@@ -3,18 +3,10 @@
   "ui": "stream",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*", "!README.md"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "env": 
-				[
-					"NODE_ENV",
-					"VERCEL",
-					"NETLIFY",
-					"NEXT_PUBLIC_SERVER_API_URL",
-					"JWT_SECRET", 
-					"DATABASE_URL"
-				]
+      "dependsOn": ["^build", "db:generate"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "env": ["DATABASE_URL", "JWT_SECRET", "NETLIFY", "NEXT_PUBLIC_SERVER_API_URL", "NODE_ENV", "VERCEL"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -27,7 +19,9 @@
       "persistent": true
     },
     "db:generate": {
-      "cache": false
+      "dependsOn": ["^db:generate"],
+      "cache": false,
+      "env": ["DATABASE_URL"]
     },
     "db:push": {
        "cache": false

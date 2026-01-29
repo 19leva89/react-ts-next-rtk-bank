@@ -1,0 +1,36 @@
+{
+  "name": "@repo/bank-db",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/client.ts --format esm --dts",
+    "db:generate": "prisma generate",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "dev": "pnpm run build && tsup src/client.ts --format esm --watch",
+    "format": "prisma format",
+    "lint": "eslint . --max-warnings 0",
+    "predev": "npm run db:generate",
+    "studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/adapter-mariadb": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prisma": "^7.3.0",
+    "rimraf": "^5.0.10",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "main": "./dist/client.js",
+  "exports": {
+    ".": "./dist/client.js"
+  }
+}

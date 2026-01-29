@@ -1,9 +1,9 @@
 import { randomInt } from 'crypto'
 import { sign } from 'jsonwebtoken'
+import { prisma } from '@repo/bank-db'
 import { Request, Response } from 'express'
 import { compareSync, genSaltSync, hashSync } from 'bcryptjs'
 
-import { prisma } from '../client'
 
 /**
  * @route POST /api/user/login
