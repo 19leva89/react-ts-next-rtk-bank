@@ -1,8 +1,9 @@
-import { randomInt } from 'crypto'
-import { sign } from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+import crypto from 'crypto'
+import jwt from 'jsonwebtoken'
 import { prisma } from '@repo/bank-db'
 import { Request, Response } from 'express'
-import { compareSync, genSaltSync, hashSync } from 'bcryptjs'
+
 
 
 /**
@@ -27,7 +28,7 @@ const login = async (req: Request, res: Response) => {
 			return res.status(404).json({ msg: `Користувача не знайдено` })
 		}
 
-		const isPasswordCorrect = user && (await compareSync(password, user.password))
+		const isPasswordCorrect = user && (await bcrypt.compare(password, user.password))
 		const secret = process.env.JWT_SECRET
 
 		if (user && isPasswordCorrect && secret) {
@@ -38,6 +39,7 @@ const login = async (req: Request, res: Response) => {
 					eventTime: new Date(),
 					eventType: 'Warning',
 					userId: user.id,
+					
 				},
 			})
 
@@ -46,7 +48,7 @@ const login = async (req: Request, res: Response) => {
 					id: user.id,
 					email: user.email,
 					name: user.name,
-					token: sign({ id: user.id }, secret, { expiresIn: '1d' }),
+					token: jwt.sign({ id: user.id }, secret, { expiresIn: '1d' }),
 				})
 			} else {
 				return res.status(500).json({ msg: `Не вдалося створити нотифікацію` })
@@ -82,8 +84,8 @@ const register = async (req: Request, res: Response) => {
 			return res.status(400).json({ msg: `Користувач з такою електронною адресою вже існує` })
 		}
 
-		const salt = await genSaltSync(10)
-		const hashedPassword = await hashSync(password, salt)
+		const salt = await bcrypt.genSalt(10)
+		const hashedPassword = await bcrypt.hash(password, salt)
 
 		const user = await prisma.user.create({
 			data: {
@@ -96,7 +98,7 @@ const register = async (req: Request, res: Response) => {
 		const secret = process.env.JWT_SECRET
 
 		// Generate and store a confirmation code
-		const confirmCode = randomInt(100000, 999999).toString()
+		const confirmCode = crypto.randomInt(100000, 999999).toString()
 
 		// Save the confirmation code to the database
 		await prisma.confirmCode.create({
@@ -114,7 +116,7 @@ const register = async (req: Request, res: Response) => {
 			return res.status(201).json({
 				id: user.id,
 				email: user.email,
-				token: sign({ id: user.id }, secret, { expiresIn: '1d' }),
+				token: jwt.sign({ id: user.id }, secret, { expiresIn: '1d' }),
 			})
 		} else {
 			return res.status(400).json({ msg: `Не вдалося створити користувача` })
@@ -194,7 +196,7 @@ const recovery = async (req: Request, res: Response) => {
 		}
 
 		// Generate and store a recovery code
-		const recoveryCode = randomInt(100000, 999999).toString()
+		const recoveryCode = crypto.randomInt(100000, 999999).toString()
 
 		// Save the recovery code to the database
 		await prisma.recoveryCode.create({
@@ -257,7 +259,7 @@ const recoveryConfirm = async (req: Request, res: Response) => {
 		}
 
 		// Hash the new password
-		const hashedPassword = await hashSync(newPassword, 10)
+		const hashedPassword = await bcrypt.hash(newPassword, 10)
 
 		// Update the user's password
 		await prisma.user.update({
@@ -316,7 +318,7 @@ const newEmail = async (req: Request, res: Response) => {
 			return res.status(400).json({ msg: `Користувач з такою електронною адресою вже існує` })
 		}
 
-		const isPasswordCorrect = await compareSync(password, user.password)
+		const isPasswordCorrect = await bcrypt.compare(password, user.password)
 		if (!isPasswordCorrect) {
 			return res.status(400).json({ msg: `Пароль неправильний` })
 		}
@@ -364,7 +366,7 @@ const newPassword = async (req: Request, res: Response) => {
 			return res.status(404).json({ msg: `Користувача не знайдено` })
 		}
 
-		const isPasswordCorrect = await compareSync(oldPassword, user.password)
+		const isPasswordCorrect = await bcrypt.compare(oldPassword, user.password)
 		if (!isPasswordCorrect) {
 			return res.status(400).json({ msg: `Старий пароль неправильний` })
 		}
@@ -373,8 +375,8 @@ const newPassword = async (req: Request, res: Response) => {
 			return res.status(400).json({ msg: `Новий пароль повинен відрізнятися від старого` })
 		}
 
-		const salt = await genSaltSync(10)
-		const hashedNewPassword = await hashSync(newPassword, salt)
+		const salt = await bcrypt.genSalt(10)
+		const hashedNewPassword = await bcrypt.hash(newPassword, salt)
 
 		await prisma.user.update({
 			where: { id: req.user.id },
