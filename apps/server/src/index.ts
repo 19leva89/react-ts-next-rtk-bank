@@ -5,7 +5,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import type { Express, NextFunction, Request, Response } from 'express'
 
-import usersRouter from './routes/users'
+import usersRouter from './routes/users.js'
 
 interface AppError extends Error {
 	status?: number

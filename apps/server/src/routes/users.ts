@@ -11,8 +11,8 @@ import {
 	sendPayment,
 	receivePayment,
 	current,
-} from '../controllers/users'
-import { auth } from '../middleware/auth'
+} from '../controllers/users.js'
+import { auth } from '../middleware/auth.js'
 
 const router: Router = express.Router()
 
