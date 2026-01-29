@@ -1,5 +1,5 @@
 {
-  "name": "bank",
+  "name": "bank-client",
   "version": "0.2.0",
   "type": "module",
   "private": true,
@@ -24,8 +24,6 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.19.7",
-    "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9.39.2",
