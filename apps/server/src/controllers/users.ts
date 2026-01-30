@@ -4,8 +4,6 @@ import jwt from 'jsonwebtoken'
 import { prisma } from '@repo/bank-db'
 import { Request, Response } from 'express'
 
-
-
 /**
  * @route POST /api/user/login
  * @desc Login
@@ -39,7 +37,6 @@ const login = async (req: Request, res: Response) => {
 					eventTime: new Date(),
 					eventType: 'Warning',
 					userId: user.id,
-					
 				},
 			})
 

@@ -1,7 +1,6 @@
 import { prisma } from '@repo/bank-db'
-import { JwtPayload, verify } from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 import { NextFunction, Request, Response } from 'express'
-
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -15,13 +14,17 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
 			// Handle the case when JWT_SECRET is undefined
 			return res.status(500).json({ msg: `JWT_SECRET is not defined` })
 		}
-		const decoded = verify(token, process.env.JWT_SECRET) as JwtPayload
+		const decoded = jwt.verify(token, process.env.JWT_SECRET) as JwtPayload
 
 		const user = await prisma.user.findUnique({
 			where: {
 				id: decoded.id,
 			},
 		})
+
+		if (!user) {
+			return res.status(404).json({ message: 'Користувача не знайдено' })
+		}
 
 		req.user = user
 
