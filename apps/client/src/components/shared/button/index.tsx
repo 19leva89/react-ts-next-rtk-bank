@@ -14,7 +14,7 @@ interface Props {
 
 export const Button = ({ children, className, link, onClick }: Props) => {
 	return (
-		<Link href={link} type="submit" className={className} onClick={onClick}>
+		<Link href={link} type='submit' className={className} onClick={onClick}>
 			{children}
 		</Link>
 	)

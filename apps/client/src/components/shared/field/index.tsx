@@ -25,7 +25,7 @@ export const Field = ({
 }: Props) => {
 	return (
 		<>
-			<div className="field">
+			<div className='field'>
 				{label && (
 					<label
 						htmlFor={name}

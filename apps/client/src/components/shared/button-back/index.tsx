@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 export const ButtonBack = () => {
@@ -10,8 +11,8 @@ export const ButtonBack = () => {
 	}
 
 	return (
-		<div className="button button__back">
-			<img src="/svg/button-back.svg" alt="<" width="24" height="24" onClick={handleClick} />
+		<div className='button button__back'>
+			<Image src='/svg/button-back.svg' alt='<' width='24' height='24' onClick={handleClick} />
 		</div>
 	)
 }

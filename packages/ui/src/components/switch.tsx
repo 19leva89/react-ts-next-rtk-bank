@@ -2,7 +2,7 @@
 
 import { cn } from '@repo/ui/lib'
 import { ComponentProps } from 'react'
-import * as SwitchPrimitive from '@radix-ui/react-switch'
+import { Switch as SwitchPrimitive } from 'radix-ui'
 
 /**
  * Switch component with styled appearance and accessibility features
@@ -17,7 +17,7 @@ function Switch({ className, ...props }: ComponentProps<typeof SwitchPrimitive.R
 		<SwitchPrimitive.Root
 			data-slot='switch'
 			className={cn(
-				'shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input dark:data-[state=unchecked]:bg-input/80 peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+				'focus-visible:border-ring focus-visible:ring-ring/50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input dark:data-[state=unchecked]:bg-input/80 peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
 				className,
 			)}
 			{...props}

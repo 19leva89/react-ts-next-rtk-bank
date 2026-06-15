@@ -14,7 +14,7 @@ import { Alert, AlertStatus, ButtonBack, Field, FieldPassword, Form } from '@/co
 const LoginPage = () => {
 	const router = useRouter()
 	const [loginUser] = useLoginMutation()
-	const [msg, setMsg] = useState('')
+	const [msg, setMsg] = useState<string>('')
 	const [msgType, setMsgType] = useState<AlertStatus>('disabled')
 	const {
 		register,
@@ -50,43 +50,43 @@ const LoginPage = () => {
 	}
 
 	return (
-		<main className="main__container">
+		<main className='main__container'>
 			<ButtonBack />
 
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<h1 className="form__title">Login</h1>
+				<h1 className='form__title'>Login</h1>
 
-				<p className="form__text">Select login method</p>
+				<p className='form__text'>Select login method</p>
 
-				<div className="form">
-					<div className="form__item">
+				<div className='form'>
+					<div className='form__item'>
 						<Field
-							type="email"
-							name="email"
-							label="Email"
-							placeholder="Enter your email"
+							type='email'
+							name='email'
+							label='Email'
+							placeholder='Enter your email'
 							register={register}
 							patternValue={REG_EXP_EMAIL}
-							patternMessage="Please enter a valid email address"
+							patternMessage='Please enter a valid email address'
 							errors={errors as Record<string, FieldError>}
 						/>
 					</div>
 
-					<div className="form__item">
+					<div className='form__item'>
 						<FieldPassword
-							name="password"
-							label="Password"
-							placeholder="Enter your password"
+							name='password'
+							label='Password'
+							placeholder='Enter your password'
 							register={register}
 							errors={errors as Record<string, FieldError>}
 						/>
 					</div>
 				</div>
 
-				<div className="form__item">
-					<span className="link__prefix">
+				<div className='form__item'>
+					<span className='link__prefix'>
 						Forgot your password?
-						<Link href="/recovery" className="link">
+						<Link href='/recovery' className='link'>
 							<> </>Restore
 						</Link>
 					</span>
@@ -94,13 +94,13 @@ const LoginPage = () => {
 
 				<button
 					className={`button button__primary ${!isValid || isSubmitting ? 'button--disabled' : ''}`}
-					type="submit"
+					type='submit'
 					disabled={!isValid || isSubmitting}
 				>
 					Continue
 				</button>
 
-				<section className="form__item form__alert">
+				<section className='form__item form__alert'>
 					<Alert status={msgType} message={msg} />
 				</section>
 			</Form>

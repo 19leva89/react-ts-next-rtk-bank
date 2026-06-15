@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
-import { prisma } from '@repo/bank-db'
 import { Request, Response } from 'express'
+import { prisma, type Prisma } from '@repo/bank-db'
 
 /**
  * @route POST /api/user/login
@@ -442,7 +442,7 @@ const sendPayment = async (req: Request, res: Response) => {
 		}
 
 		// Perform atomic transaction
-		await prisma.$transaction(async (prismaClient) => {
+		await prisma.$transaction(async (prismaClient: Prisma.TransactionClient) => {
 			// Update sender balance
 			await prismaClient.user.update({
 				where: { id: req.user.id },
@@ -537,7 +537,7 @@ const receivePayment = async (req: Request, res: Response) => {
 		}
 
 		// Perform atomic transaction (though simpler here, still good for consistency)
-		await prisma.$transaction(async (prismaClient) => {
+		await prisma.$transaction(async (prismaClient: Prisma.TransactionClient) => {
 			// Update recipient balance
 			await prismaClient.user.update({
 				where: { id: req.user.id },

@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const FieldPassword = ({ name, label, placeholder, register, errors }: Props) => {
-	const [showPassword, setShowPassword] = useState(false)
+	const [showPassword, setShowPassword] = useState<boolean>(false)
 
 	const toggleIcon = () => {
 		setShowPassword((prevState) => !prevState)
@@ -24,7 +24,7 @@ export const FieldPassword = ({ name, label, placeholder, register, errors }: Pr
 
 	return (
 		<>
-			<div className="field field--password">
+			<div className='field field--password'>
 				<label
 					htmlFor={name}
 					className={`field__label field__error ${errors[name] ? 'field__error--active' : ''}`}
@@ -32,7 +32,7 @@ export const FieldPassword = ({ name, label, placeholder, register, errors }: Pr
 					{label}
 				</label>
 
-				<div className="field__wrapper">
+				<div className='field__wrapper'>
 					<input
 						className={`field__input validation ${errors[name] ? 'validation--active' : ''}`}
 						type={showPassword ? 'text' : 'password'}

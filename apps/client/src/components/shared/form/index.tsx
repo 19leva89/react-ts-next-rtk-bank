@@ -16,7 +16,7 @@ export const Form = ({ children, onSubmit }: Props) => {
 	})
 
 	return (
-		<form className="form__container" onSubmit={onSubmitHandler}>
+		<form className='form__container' onSubmit={onSubmitHandler}>
 			{children}
 		</form>
 	)

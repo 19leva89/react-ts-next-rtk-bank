@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { FieldError, useForm } from 'react-hook-form'
 
@@ -10,7 +11,7 @@ import { Alert, AlertStatus, ButtonBack, Divider, Field, Form, Loader } from '@/
 
 const ReceivePage = () => {
 	const [receivePayment] = useReceivePaymentMutation()
-	const [msg, setMsg] = useState('')
+	const [msg, setMsg] = useState<string>('')
 	const [msgType, setMsgType] = useState<AlertStatus>('disabled')
 
 	const {
@@ -49,56 +50,56 @@ const ReceivePage = () => {
 	}
 
 	return (
-		<main className="main__container main__container--gray">
-			<div className="menu__container">
+		<main className='main__container main__container--gray'>
+			<div className='menu__container'>
 				{isSubmitting && <Loader />}
 
 				<ButtonBack />
-				<h1 className="form__title">Receive</h1>
-				<div className="stub"></div>
+				<h1 className='form__title'>Receive</h1>
+				<div className='stub'></div>
 			</div>
 
-			<div className="receive__container">
+			<div className='receive__container'>
 				<Form onSubmit={handleSubmit(onSubmit)}>
-					<div className="form form--slim">
-						<p className="form__text form__text--big form__text--left">Receive amount</p>
-						<div className="form__item form__item--slim">
+					<div className='form form--slim'>
+						<p className='form__text form__text--big form__text--left'>Receive amount</p>
+						<div className='form__item form__item--slim'>
 							<Field
-								type="number"
-								name="amount"
-								placeholder="$"
+								type='number'
+								name='amount'
+								placeholder='$'
 								register={register}
 								patternValue={REG_EXP_AMOUNT}
-								patternMessage="Please input a valid number above zero"
+								patternMessage='Please input a valid number above zero'
 								errors={errors as Record<string, FieldError>}
 							/>
 						</div>
 					</div>
 
-					<Divider className="divider" />
+					<Divider className='divider' />
 
-					<p className="form__text form__text--big form__text--left">Payment system</p>
+					<p className='form__text form__text--big form__text--left'>Payment system</p>
 					<button
 						className={`button button__transparent button__fat ${
 							!isValid || isSubmitting ? 'button--disabled' : ''
 						}`}
-						type="submit"
+						type='submit'
 						disabled={!isValid || isSubmitting}
 						onClick={() => onSubmit({ amount: amount, paymentSystem: 'Stripe' })}
 					>
-						<div className="payment__container">
-							<div className="payment__wrapper">
-								<img src="/svg/payment/stripe.svg" alt="Stripe" />
-								<div className="payment__title">Stripe</div>
+						<div className='payment__container'>
+							<div className='payment__wrapper'>
+								<Image src='/svg/payment/stripe.svg' alt='Stripe' width={48} height={48} />
+								<div className='payment__title'>Stripe</div>
 							</div>
 
-							<div className="payment__ico">
-								<img src="/svg/payment/mastercard-ico.svg" alt="Mastercard" />
-								<img src="/svg/payment/tron-green-ico.svg" alt="Tron green" />
-								<img src="/svg/payment/bitcoin-ico.svg" alt="Bitcoin" />
-								<img src="/svg/payment/tron-red-ico.svg" alt="Tron red" />
-								<img src="/svg/payment/ethereum-ico.svg" alt="Ethereum" />
-								<img src="/svg/payment/binance-ico.svg" alt="Binance" />
+							<div className='payment__ico'>
+								<Image src='/svg/payment/mastercard-ico.svg' alt='Mastercard' width={22} height={22} />
+								<Image src='/svg/payment/tron-green-ico.svg' alt='Tron green' width={22} height={22} />
+								<Image src='/svg/payment/bitcoin-ico.svg' alt='Bitcoin' width={22} height={22} />
+								<Image src='/svg/payment/tron-red-ico.svg' alt='Tron red' width={22} height={22} />
+								<Image src='/svg/payment/ethereum-ico.svg' alt='Ethereum' width={22} height={22} />
+								<Image src='/svg/payment/binance-ico.svg' alt='Binance' width={22} height={22} />
 							</div>
 						</div>
 					</button>
@@ -107,28 +108,28 @@ const ReceivePage = () => {
 						className={`button button__transparent button__fat ${
 							!isValid || isSubmitting ? 'button--disabled' : ''
 						}`}
-						type="submit"
+						type='submit'
 						disabled={!isValid || isSubmitting}
 						onClick={() => onSubmit({ amount: amount, paymentSystem: 'Coinbase' })}
 					>
-						<div className="payment__container">
-							<div className="payment__wrapper">
-								<img src="/svg/payment/coinbase.svg" alt="Coinbase" />
-								<div className="payment__title">Coinbase</div>
+						<div className='payment__container'>
+							<div className='payment__wrapper'>
+								<Image src='/svg/payment/coinbase.svg' alt='Coinbase' width={48} height={48} />
+								<div className='payment__title'>Coinbase</div>
 							</div>
 
-							<div className="payment__ico">
-								<img src="/svg/payment/tron-green-ico.svg" alt="Tron green" />
-								<img src="/svg/payment/mastercard-ico.svg" alt="Mastercard" />
-								<img src="/svg/payment/tron-red-ico.svg" alt="Tron red" />
-								<img src="/svg/payment/bitcoin-ico.svg" alt="Bitcoin" />
-								<img src="/svg/payment/binance-ico.svg" alt="Binance" />
-								<img src="/svg/payment/ethereum-ico.svg" alt="Ethereum" />
+							<div className='payment__ico'>
+								<Image src='/svg/payment/tron-green-ico.svg' alt='Tron green' width={22} height={22} />
+								<Image src='/svg/payment/mastercard-ico.svg' alt='Mastercard' width={22} height={22} />
+								<Image src='/svg/payment/tron-red-ico.svg' alt='Tron red' width={22} height={22} />
+								<Image src='/svg/payment/bitcoin-ico.svg' alt='Bitcoin' width={22} height={22} />
+								<Image src='/svg/payment/binance-ico.svg' alt='Binance' width={22} height={22} />
+								<Image src='/svg/payment/ethereum-ico.svg' alt='Ethereum' width={22} height={22} />
 							</div>
 						</div>
 					</button>
 
-					<section className="form__item form__item--slim form__alert">
+					<section className='form__item form__item--slim form__alert'>
 						<Alert status={msgType} message={msg} />
 					</section>
 				</Form>

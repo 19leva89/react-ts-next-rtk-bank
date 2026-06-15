@@ -13,7 +13,7 @@ import { Alert, AlertStatus, ButtonBack, Field, FieldPassword, Form } from '@/co
 const RecoveryConfirmPage = () => {
 	const router = useRouter()
 	const [recoveryConfirmUser] = useRecoveryConfirmMutation()
-	const [msg, setMsg] = useState('')
+	const [msg, setMsg] = useState<string>('')
 	const [msgType, setMsgType] = useState<AlertStatus>('disabled')
 	const {
 		register,
@@ -50,33 +50,33 @@ const RecoveryConfirmPage = () => {
 	}
 
 	return (
-		<main className="main__container">
+		<main className='main__container'>
 			<ButtonBack />
 
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<h1 className="form__title">Changing the password</h1>
+				<h1 className='form__title'>Changing the password</h1>
 
-				<p className="form__text">Write the code you received</p>
+				<p className='form__text'>Write the code you received</p>
 
-				<div className="form">
-					<div className="form__item">
+				<div className='form'>
+					<div className='form__item'>
 						<Field
-							type="number"
-							name="code"
-							label="Code"
-							placeholder="Enter your code"
+							type='number'
+							name='code'
+							label='Code'
+							placeholder='Enter your code'
 							register={register}
 							patternValue={REG_EXP_CODE}
-							patternMessage="Enter a six-digit number"
+							patternMessage='Enter a six-digit number'
 							errors={errors as Record<string, FieldError>}
 						/>
 					</div>
 
-					<div className="form__item">
+					<div className='form__item'>
 						<FieldPassword
-							name="newPassword"
-							label="New password"
-							placeholder="Enter your new password"
+							name='newPassword'
+							label='New password'
+							placeholder='Enter your new password'
 							register={register}
 							errors={errors as Record<string, FieldError>}
 						/>
@@ -85,13 +85,13 @@ const RecoveryConfirmPage = () => {
 
 				<button
 					className={`button button__primary ${!isValid || isSubmitting ? 'button--disabled' : ''}`}
-					type="submit"
+					type='submit'
 					disabled={!isValid || isSubmitting}
 				>
 					Change password
 				</button>
 
-				<section className="form__item form__alert">
+				<section className='form__item form__alert'>
 					<Alert status={msgType} message={msg} />
 				</section>
 			</Form>

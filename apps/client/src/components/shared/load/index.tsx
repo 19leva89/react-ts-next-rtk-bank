@@ -12,15 +12,15 @@ export const Alert = ({ status, message }: Props) => {
 }
 
 export const Loader = () => {
-	return <div className="loader"></div>
+	return <div className='loader'></div>
 }
 
 export const Skeleton = () => {
 	return (
-		<div className="skeleton">
-			<div className="skeleton__item"></div>
-			<div className="skeleton__item"></div>
-			<div className="skeleton__item"></div>
+		<div className='skeleton'>
+			<div className='skeleton__item'></div>
+			<div className='skeleton__item'></div>
+			<div className='skeleton__item'></div>
 		</div>
 	)
 }

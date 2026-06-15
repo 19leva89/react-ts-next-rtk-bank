@@ -2,7 +2,10 @@ packages:
   - apps/*
   - packages/*
 
-ignoredBuiltDependencies:
-  - '@prisma/engines'
-  - esbuild
-  - prisma
+allowBuilds:
+  '@prisma/engines': true
+  bcrypt: true
+  core-js-pure: set this to true or false
+  esbuild: true
+  prisma: true
+  sharp: true

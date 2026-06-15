@@ -10,7 +10,7 @@ import { Alert, AlertStatus, ButtonBack, Field, Form, Loader } from '@/component
 
 const SendPage = () => {
 	const [sendPayment] = useSendPaymentMutation()
-	const [msg, setMsg] = useState('')
+	const [msg, setMsg] = useState<string>('')
 	const [msgType, setMsgType] = useState<AlertStatus>('disabled')
 	const {
 		register,
@@ -45,37 +45,37 @@ const SendPage = () => {
 	}
 
 	return (
-		<main className="main__container">
+		<main className='main__container'>
 			{isSubmitting && <Loader />}
 
 			<ButtonBack />
 
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<h1 className="form__title">Send</h1>
+				<h1 className='form__title'>Send</h1>
 
-				<div className="form">
-					<div className="form__item">
+				<div className='form'>
+					<div className='form__item'>
 						<Field
-							type="email"
-							name="email"
-							label="Email"
-							placeholder="Enter your email"
+							type='email'
+							name='email'
+							label='Email'
+							placeholder='Enter your email'
 							register={register}
 							patternValue={REG_EXP_EMAIL}
-							patternMessage="Please enter a valid email address"
+							patternMessage='Please enter a valid email address'
 							errors={errors as Record<string, FieldError>}
 						/>
 					</div>
 
-					<div className="form__item">
+					<div className='form__item'>
 						<Field
-							type="number"
-							name="amount"
-							label="Amount"
-							placeholder="$"
+							type='number'
+							name='amount'
+							label='Amount'
+							placeholder='$'
 							register={register}
 							patternValue={REG_EXP_AMOUNT}
-							patternMessage="Please input a valid number above zero"
+							patternMessage='Please input a valid number above zero'
 							errors={errors as Record<string, FieldError>}
 						/>
 					</div>
@@ -83,13 +83,13 @@ const SendPage = () => {
 
 				<button
 					className={`button button__primary ${!isValid || isSubmitting ? 'button--disabled' : ''}`}
-					type="submit"
+					type='submit'
 					disabled={!isValid || isSubmitting}
 				>
 					Send
 				</button>
 
-				<section className="form__item form__item--slim form__alert">
+				<section className='form__item form__item--slim form__alert'>
 					<Alert status={msgType} message={msg} />
 				</section>
 			</Form>

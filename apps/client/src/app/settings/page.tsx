@@ -24,9 +24,10 @@ import { useNewEmailMutation, useNewPasswordMutation } from '@/lib/services/auth
 const SettingsPage = () => {
 	const router = useRouter()
 	const dispatch = useAppDispatch()
+
 	const [changeEmailUser] = useNewEmailMutation()
 	const [changePasswordUser] = useNewPasswordMutation()
-	const [msg, setMsg] = useState('')
+	const [msg, setMsg] = useState<string>('')
 	const [msgType, setMsgType] = useState<AlertStatus>('disabled')
 
 	const {
@@ -90,38 +91,38 @@ const SettingsPage = () => {
 	}
 
 	return (
-		<main className="main__container">
+		<main className='main__container'>
 			{(isEmailSubmitting || isPasswordSubmitting) && <Loader />}
 
-			<div className="menu__container">
+			<div className='menu__container'>
 				<ButtonBack />
-				<h1 className="form__title">Settings</h1>
-				<div className="stub"></div>
+				<h1 className='form__title'>Settings</h1>
+				<div className='stub'></div>
 			</div>
 
-			<div className="wrapper__settings">
+			<div className='wrapper__settings'>
 				<Form onSubmit={handleSubmitEmail(changeEmail)}>
-					<p className="form__text form__text--big">Change email</p>
+					<p className='form__text form__text--big'>Change email</p>
 
-					<div className="form form--slim">
-						<div className="form__item form__item--slim">
+					<div className='form form--slim'>
+						<div className='form__item form__item--slim'>
 							<Field
-								type="email"
-								name="newEmail"
-								label="New email"
-								placeholder="Enter your new email"
+								type='email'
+								name='newEmail'
+								label='New email'
+								placeholder='Enter your new email'
 								register={registerEmail}
 								patternValue={REG_EXP_EMAIL}
-								patternMessage="Please enter a valid email address"
+								patternMessage='Please enter a valid email address'
 								errors={emailErrors as Record<string, FieldError>}
 							/>
 						</div>
 
-						<div className="form__item form__item--slim">
+						<div className='form__item form__item--slim'>
 							<FieldPassword
-								name="password"
-								label="Password"
-								placeholder="Enter your password"
+								name='password'
+								label='Password'
+								placeholder='Enter your password'
 								register={registerEmail}
 								errors={emailErrors as Record<string, FieldError>}
 							/>
@@ -132,34 +133,34 @@ const SettingsPage = () => {
 						className={`button button__transparent button__slim ${
 							!isEmailValid || isEmailSubmitting ? 'button--disabled' : ''
 						}`}
-						type="submit"
+						type='submit'
 						disabled={!isEmailValid || isEmailSubmitting}
 					>
 						Save Email
 					</button>
 				</Form>
 
-				<Divider className="divider" />
+				<Divider className='divider' />
 
 				<Form onSubmit={handleSubmitPassword(changePassword)}>
-					<p className="form__text form__text--big">Change password</p>
+					<p className='form__text form__text--big'>Change password</p>
 
-					<div className="form form--slim">
-						<div className="form__item form__item--slim">
+					<div className='form form--slim'>
+						<div className='form__item form__item--slim'>
 							<FieldPassword
-								name="oldPassword"
-								label="Old password"
-								placeholder="Enter your old password"
+								name='oldPassword'
+								label='Old password'
+								placeholder='Enter your old password'
 								register={registerPassword}
 								errors={passwordErrors as Record<string, FieldError>}
 							/>
 						</div>
 
-						<div className="form__item form__item--slim">
+						<div className='form__item form__item--slim'>
 							<FieldPassword
-								name="newPassword"
-								label="New password"
-								placeholder="Enter your new password"
+								name='newPassword'
+								label='New password'
+								placeholder='Enter your new password'
 								register={registerPassword}
 								errors={passwordErrors as Record<string, FieldError>}
 							/>
@@ -170,21 +171,21 @@ const SettingsPage = () => {
 						className={`button button__transparent button__slim ${
 							!isPasswordValid || isPasswordSubmitting ? 'button--disabled' : ''
 						}`}
-						type="submit"
+						type='submit'
 						disabled={!isPasswordValid || isPasswordSubmitting}
 					>
 						Save Password
 					</button>
 				</Form>
 
-				<Divider className="divider" />
+				<Divider className='divider' />
 
 				<Form onSubmit={onLogoutClick}>
-					<button className={'button button__warning button__slim'} type="submit">
+					<button className={'button button__warning button__slim'} type='submit'>
 						Logout
 					</button>
 
-					<section className="form__item form__alert">
+					<section className='form__item form__alert'>
 						<Alert status={msgType} message={msg} />
 					</section>
 				</Form>

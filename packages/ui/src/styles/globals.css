@@ -1,11 +1,7 @@
 @import 'tailwindcss';
-@source "../../../apps/**/*.{ts,tsx}";
-@source "../../../components/**/*.{ts,tsx}";
-@source "../**/*.{ts,tsx}";
-
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
 	@apply text-base overflow-hidden;
@@ -20,8 +16,12 @@ body {
 	}
 }
 
+a,
 button {
 	cursor: pointer;
+	transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+	transition-duration: 300ms;
+	transition-timing-function: ease-in-out;
 }
 
 /* ********************************************** */

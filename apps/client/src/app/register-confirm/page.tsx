@@ -13,7 +13,7 @@ import { Alert, AlertStatus, ButtonBack, Field, Form } from '@/components/shared
 const RegisterConfirmPage = () => {
 	const router = useRouter()
 	const [registerConfirmUser] = useRegisterConfirmMutation()
-	const [msg, setMsg] = useState('')
+	const [msg, setMsg] = useState<string>('')
 	const [msgType, setMsgType] = useState<AlertStatus>('disabled')
 	const {
 		register,
@@ -50,24 +50,24 @@ const RegisterConfirmPage = () => {
 	}
 
 	return (
-		<main className="main__container">
+		<main className='main__container'>
 			<ButtonBack />
 
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<h1 className="form__title">Confirm account</h1>
+				<h1 className='form__title'>Confirm account</h1>
 
-				<p className="form__text">Write the code you received</p>
+				<p className='form__text'>Write the code you received</p>
 
-				<div className="form">
-					<div className="form__item">
+				<div className='form'>
+					<div className='form__item'>
 						<Field
-							type="number"
-							name="code"
-							label="Code"
-							placeholder="Enter your code"
+							type='number'
+							name='code'
+							label='Code'
+							placeholder='Enter your code'
 							register={register}
 							patternValue={REG_EXP_CODE}
-							patternMessage="Enter a six-digit number"
+							patternMessage='Enter a six-digit number'
 							errors={errors as Record<string, FieldError>}
 						/>
 					</div>
@@ -75,13 +75,13 @@ const RegisterConfirmPage = () => {
 
 				<button
 					className={`button button__primary ${!isValid || isSubmitting ? 'button--disabled' : ''}`}
-					type="submit"
+					type='submit'
 					disabled={!isValid || isSubmitting}
 				>
 					Confirm
 				</button>
 
-				<section className="form__item form__alert">
+				<section className='form__item form__alert'>
 					<Alert status={msgType} message={msg} />
 				</section>
 			</Form>

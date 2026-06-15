@@ -1,7 +1,7 @@
 {
   "name": "bank-server",
   "version": "0.2.1",
-	"type": "module",
+  "type": "module",
   "private": true,
   "scripts": {
     "start": "node dist/index.js",
@@ -16,10 +16,10 @@
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
-    "dotenv": "^17.2.3",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "morgan": "^1.10.1"
+    "morgan": "^1.11.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -30,6 +30,6 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
